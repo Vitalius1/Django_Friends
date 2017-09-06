@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Friends</title>
+</head>
+<body>
+    <h1>Welcome, {{request.session.user_name}}</h1>
+    <a href="{% url 'friend:logout' %}">Logout</a>
+    <br>
+    <br>
+    <a href="{% url 'friend:friends_list' user_id=request.session.user_id %}">View Your Friends</a>
+    <br>
+    <br>
+    <a href="{% url 'friend:pick_list' user_id=request.session.user_id %}">Add Friend</a>
+    <br>
+    <br>
+    <h2>Recent people:</h2>
+    {% for user in users %}
+        <p>{{user.first_name}} joined {{user.created_at|timesince}} ago</p>
+    {% endfor %}
+
+
+</body>
+</html>

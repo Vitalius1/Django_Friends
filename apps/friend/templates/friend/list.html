@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Friend List</title>
+</head>
+<body>
+    <a href="{% url 'friend:index' %}">Home</a>
+    <h3>Your friend count: {{count}} </h3>
+    <br>
+    <h1>All your friends:</h1>
+    <table>
+        {% for friend in friends %}
+            <tr>
+                <td>{{friend.first_name}}</td>
+                <td><a href="{% url 'friend:delete' user_id=request.session.user_id friend_id=friend.id %}">delete</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
